@@ -1,0 +1,7 @@
+{
+  "0": {
+    "userId": "type:Integer",
+    "title": "${title}"
+  },
+  "id": 101
+}
