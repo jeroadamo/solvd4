@@ -55,7 +55,6 @@ public class APISampleTest implements IAbstractTest {
         getAlbum.validateResponseAgainstSchema("api/albums/_get/rs.schema");
     }
     @Test()
-    @TestPriority(Priority.P1)
     public void testDeleteAlbum() {
         DeleteAlbum deleteAlbum = new DeleteAlbum();
         deleteAlbum.callAPIExpectSuccess();

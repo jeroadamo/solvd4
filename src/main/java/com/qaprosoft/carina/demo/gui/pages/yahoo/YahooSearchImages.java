@@ -8,9 +8,9 @@ import org.openqa.selenium.support.FindBy;
 public class YahooSearchImages extends AbstractPage {
 
     @FindBy(id = "yschsp")
-    private ExtendedWebElement searchbar;
+    private ExtendedWebElement searchBar;
     @FindBy(css = "span#yui_3_5_1_1_1656298224032_808")
-    private ExtendedWebElement changeSize;
+    private ExtendedWebElement changeSizeButton;
     @FindBy(css = "li#resitem-0")
     private ExtendedWebElement firstResult;
 
@@ -21,5 +21,9 @@ public class YahooSearchImages extends AbstractPage {
 
     public void clickFirstResult(){
         firstResult.click();
+    }
+
+    public boolean isFirstResultOpened(){
+        return firstResult.isElementPresent();
     }
 }

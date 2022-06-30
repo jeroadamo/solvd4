@@ -8,54 +8,66 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.lang.invoke.MethodHandles;
+import java.util.List;
 
 public class YahooHomepage extends AbstractPage {
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     @FindBy(name = "p")
     private ExtendedWebElement searchbar;
-
     @FindBy(id = "ybar-search")
     private ExtendedWebElement searchButton;
     @FindBy(xpath = ".//div[@class='_yb_142c6 _yb_1upl7 ']/div/div/ul/li[3]/a[1]")
-    private ExtendedWebElement news;
+    private ExtendedWebElement newsButton;
     @FindBy(css = "a#root_8")
-    private ExtendedWebElement weather;
-    @FindBy(css = "a._yb_1k4wk")
+    private ExtendedWebElement weatherButton;
+    @FindBy(xpath = ".//div[@role='toolbar']/div[1]/div[1]/a")
     private ExtendedWebElement loginButton;
-    @FindBy(css = "a._yb_13wsn.rapid-noclick-resp")
-    private ExtendedWebElement mail;
-
+    @FindBy(css = "a#ybarMailLink")
+    private ExtendedWebElement mailButton;
+    @FindBy(id = "root_3")
+    private ExtendedWebElement sportsButton;
+    @FindBy(xpath = ".//div[@class='c-list Mb(24px) wafer-tabs-target_Mb(18px) D(b)']/div[1]/div")
+    private List<ExtendedWebElement> leftTrendingTopics;
 
 
     public YahooHomepage(WebDriver driver) {
         super(driver);
-//        setPageAbsoluteURL(R.CONFIG.get(Configuration.Parameter.URL.getKey()));
+        setPageURL("");
     }
-    public YahooNews clickNews() {
-        news.click();
-        return new YahooNews(driver);
+    public YahooNewsPage clickNews() {
+        newsButton.click();
+        return new YahooNewsPage(driver);
     }
 
-    public YahooLogin clickLogin(){
+    public YahooLoginPage clickLogin(){
         loginButton.click();
-        return new YahooLogin(driver);
+        return new YahooLoginPage(driver);
     }
 
-    public YahooSearchEngine searchSomething(String text){
-        searchbar.click();
+    public YahooSearchEnginePage searchSomething(String text){
         searchbar.type(text);
         searchButton.click();
-        return new YahooSearchEngine(driver);
+        return new YahooSearchEnginePage(driver);
     }
 
-    public YahooWeatherPage weatherPage(){
-        weather.click();
+    public YahooWeatherPage goToWeatherPage(){
+        weatherButton.click();
         return new YahooWeatherPage(driver);
     }
 
-    public YahooMailPage mailPage(){
-        mail.click();
+    public YahooMailPage goToMailPage(){
+        mailButton.click();
         return new YahooMailPage(driver);
+    }
+
+    public YahooSearchEnginePage clickOnTrendingTopic(int topicNumber){
+      leftTrendingTopics.get(topicNumber).click();
+      return new YahooSearchEnginePage(driver);
+    }
+
+    public YahooSportsPage goToYahooSports(){
+        sportsButton.click();
+        return new YahooSportsPage(getDriver());
     }
 }

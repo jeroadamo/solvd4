@@ -7,14 +7,14 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-public class YahooNews extends AbstractPage {
+public class YahooNewsPage extends AbstractPage {
     @FindBy(id = "ybar-navigation")
     private List<ExtendedWebElement> navigationBar;
 
     @FindBy(id = "Main")
     private List<ExtendedWebElement> mainElement;
 
-    public YahooNews(WebDriver driver) {
+    public YahooNewsPage(WebDriver driver) {
         super(driver);
     }
 }
