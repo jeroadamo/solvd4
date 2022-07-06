@@ -9,11 +9,11 @@ import org.openqa.selenium.support.FindBy;
 
 public class YahooWeatherPage extends AbstractPage {
 
-    @FindBy(css = ".Py\\(4px\\).Px\\(10px\\).D\\(ib\\)")
+    @FindBy(xpath = ".//div[@class='StretchedBox']/section[1]/div[2]/div[1]/button[1]/div[1]/span")
     private ExtendedWebElement changeLocationButton;
-    @FindBy(xpath = ".//div[@class='Pt(20px) Px(20px)']/header/input")
+    @FindBy(xpath = ".//input[@placeholder='Introducir la ciudad o el código postal']")
     private ExtendedWebElement locationSearchbar;
-    @FindBy(css = "svg.Pos\\(a\\).T\\(7px\\).Start\\(7px\\).Cur\\(p\\)")
+    @FindBy(xpath = ".//div[@class='D(tb) W(100%)']/button")
     private ExtendedWebElement firstResult;
     @FindBy(xpath = ".//div[@class='unit-control D(ib)']/button[1]")
     private ExtendedWebElement celciusButton;

@@ -23,12 +23,12 @@ import com.qaprosoft.carina.core.foundation.api.http.HttpMethodType;
 import com.qaprosoft.carina.core.foundation.api.http.HttpResponseStatusType;
 import com.qaprosoft.carina.core.foundation.utils.Configuration;
 
-@Endpoint(url = "${base_url}/albums/1", methodType = HttpMethodType.DELETE)
+@Endpoint(url = "${base}/albums/1", methodType = HttpMethodType.DELETE)
 @ResponseTemplatePath(path = "api/albums/_delete/rs.json")
 @SuccessfulHttpStatus(status = HttpResponseStatusType.OK_200)
 public class DeleteAlbum extends AbstractApiMethodV2 {
 
     public DeleteAlbum() {
-        replaceUrlPlaceholder("base_url", Configuration.getEnvArg("api_url"));
+        replaceUrlPlaceholder("base", Configuration.getEnvArg("base"));
     }
 }

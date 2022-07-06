@@ -17,7 +17,7 @@ public class YahooHomepage extends AbstractPage {
     private ExtendedWebElement searchbar;
     @FindBy(id = "ybar-search")
     private ExtendedWebElement searchButton;
-    @FindBy(xpath = ".//div[@class='_yb_142c6 _yb_1upl7 ']/div/div/ul/li[3]/a[1]")
+    @FindBy(xpath = ".//div[@id='ybar-navigation']/div[1]/ul[1]/li[3]/a[1]")
     private ExtendedWebElement newsButton;
     @FindBy(css = "a#root_8")
     private ExtendedWebElement weatherButton;
@@ -27,7 +27,7 @@ public class YahooHomepage extends AbstractPage {
     private ExtendedWebElement mailButton;
     @FindBy(id = "root_3")
     private ExtendedWebElement sportsButton;
-    @FindBy(xpath = ".//div[@class='c-list Mb(24px) wafer-tabs-target_Mb(18px) D(b)']/div[1]/div")
+    @FindBy(xpath = ".//div[@class='bd']/div[1]/div[1]/div")
     private List<ExtendedWebElement> leftTrendingTopics;
 
 

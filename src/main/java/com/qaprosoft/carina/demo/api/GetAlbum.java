@@ -23,12 +23,12 @@ import com.qaprosoft.carina.core.foundation.api.http.HttpMethodType;
 import com.qaprosoft.carina.core.foundation.api.http.HttpResponseStatusType;
 import com.qaprosoft.carina.core.foundation.utils.Configuration;
 
-@Endpoint(url = "${base_url}/albums/7", methodType = HttpMethodType.GET)
+@Endpoint(url = "${base}/albums/7", methodType = HttpMethodType.GET)
 @ResponseTemplatePath(path = "api/albums/_get/rs.json")
 @SuccessfulHttpStatus(status = HttpResponseStatusType.OK_200)
 public class GetAlbum extends AbstractApiMethodV2 {
 
     public GetAlbum() {
-        replaceUrlPlaceholder("base_url", Configuration.getEnvArg("api_url"));
+        replaceUrlPlaceholder("base", Configuration.getEnvArg("base"));
     }
 }

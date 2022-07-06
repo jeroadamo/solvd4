@@ -16,5 +16,6 @@ public class YahooNewsPage extends AbstractPage {
 
     public YahooNewsPage(WebDriver driver) {
         super(driver);
+        setPageAbsoluteURL("https://es-us.noticias.yahoo.com/salud-ciencia/");
     }
 }

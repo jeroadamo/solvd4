@@ -24,14 +24,13 @@ import com.qaprosoft.carina.core.foundation.api.http.HttpMethodType;
 import com.qaprosoft.carina.core.foundation.api.http.HttpResponseStatusType;
 import com.qaprosoft.carina.core.foundation.utils.Configuration;
 
-@Endpoint(url = "${base_url}", methodType = HttpMethodType.POST)
+@Endpoint(url = "${base}/albums", methodType = HttpMethodType.POST)
 @RequestTemplatePath(path = "api/albums/_post/rq.json")
 @ResponseTemplatePath(path = "api/albums/_post/rs.json")
 @SuccessfulHttpStatus(status = HttpResponseStatusType.CREATED_201)
 public class PostAlbum extends AbstractApiMethodV2 {
 
     public PostAlbum() {
-        super("api/albums/_post/rq.json", "api/albums/_post/rs.json", "api/albums/user.properties");
-        replaceUrlPlaceholder("base_url", Configuration.getEnvArg("api_url"));
+        replaceUrlPlaceholder("base", Configuration.getEnvArg("base"));
     }
 }

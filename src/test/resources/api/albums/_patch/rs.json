@@ -1,6 +1,7 @@
 {
-
-  "userId": "type:Integer",
-  "id": "type:Integer",
-  "title": "type:String"
+  "0": {
+    "userId": "type:Integer",
+    "title":"fabulosum opemosum tucutosummm"
+  },
+  "id": 101
 }

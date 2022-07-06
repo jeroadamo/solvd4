@@ -30,21 +30,16 @@ import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
 
 import java.lang.invoke.MethodHandles;
-import java.time.temporal.ChronoUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
-/**
- * This sample shows how create REST API tests.
- *
- * @author qpsdemo
- */
 public class APISampleTest implements IAbstractTest {
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
     @Test()
     public void testCreateAlbum() throws Exception {
         PostAlbum api = new PostAlbum();
         AtomicInteger counter = new AtomicInteger(0);
-        api.callAPIWithRetry().withLogStrategy(APIMethodPoller.LogStrategy.ALL).peek(rs -> counter.getAndIncrement()).until(rs -> counter.get() == 4).pollEvery(1, ChronoUnit.SECONDS).stopAfter(10, ChronoUnit.SECONDS).execute();
+        api.setProperties("api/albums/albums.properties");
+        api.callAPIExpectSuccess();
         api.validateResponse();
     }
     @Test()
@@ -63,8 +58,21 @@ public class APISampleTest implements IAbstractTest {
 
     @Test
     public void patchAlbum(){
+        PostAlbum postAlbum = new PostAlbum();
+        postAlbum.setProperties("api/albums/albums.properties");
+        postAlbum.callAPIExpectSuccess();
+        postAlbum.validateResponse();
         PatchAlbum patchAlbum = new PatchAlbum();
         patchAlbum.callAPIExpectSuccess();
         patchAlbum.validateResponse();
+    }
+
+    @Test
+    public void testCreateAlbumMissingFields() throws Exception{
+        PostAlbum postAlbum = new PostAlbum();
+        postAlbum.setProperties("api/albums/albums.properties");
+        postAlbum.getProperties().remove("title");
+        postAlbum.callAPIExpectSuccess();
+        postAlbum.validateResponse();
     }
 }

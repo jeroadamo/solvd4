@@ -1,6 +1,7 @@
 package com.qaprosoft.carina.demo;
 
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
+import com.qaprosoft.carina.core.foundation.dataprovider.annotations.XlsDataSourceParameters;
 import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.demo.gui.pages.yahoo.*;
 import org.testng.Assert;
@@ -29,6 +30,7 @@ public class YahooWebTest implements IAbstractTest {
         YahooSearchEnginePage yahooSearchEnginePage = yahooHomepage.searchSomething(R.TESTDATA.get("searchWord"));
         Assert.assertTrue(yahooSearchEnginePage.isPageOpened(), "Failed to open Yahoo search page.");
         YahooSearchImages yahooSearchImages = yahooSearchEnginePage.clickImagesButton();
+        yahooSearchImages.assertPageOpened();
         yahooSearchImages.clickFirstResult();
         Assert.assertTrue(yahooSearchImages.isFirstResultOpened(), "First image wasn't successfully opened.");
     }
@@ -76,5 +78,18 @@ public class YahooWebTest implements IAbstractTest {
         yahooSportsPage.goToNfl();
         yahooSportsPage.goToSpanishLeague();
         Assert.assertTrue(yahooSportsPage.isResultsDisplayPresent(), "No results for La Liga currently displaying");
+    }
+
+    @Test(dataProvider = "DataProvider")
+    @XlsDataSourceParameters(path = "xls/yahooUrls.xlsx", sheet = "Sheet1", dsUid = "TUID", dsArgs = "Domain, RestOfUrl, Url")
+    public void testUrlFormation(String domain, String restOfUrl, String url){
+
+        String parts = String.valueOf(domain) + String.valueOf(restOfUrl);
+        String wholeUrl = String.valueOf(url);
+        Assert.assertEquals(parts, wholeUrl, "Url not matching");
+
+        YahooNewsPage yahooNewsPage = new YahooNewsPage(getDriver());
+        yahooNewsPage.openURL(wholeUrl);
+        Assert.assertTrue(yahooNewsPage.isPageOpened(), "Failed to open Yahoo news page");
     }
 }
